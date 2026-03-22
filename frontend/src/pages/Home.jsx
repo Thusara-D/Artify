@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Palette, ShieldCheck, ArrowRight, MousePointer2 } from 'lucide-react';
+import { Palette, ShieldCheck, ArrowRight, MousePointer2, Sparkles } from 'lucide-react';
+import ArtworkCard from '../components/ArtworkCard';
+import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
+    const { user } = useAuth();
+    const [recommendations, setRecommendations] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchRecommendations = async () => {
+            try {
+                // Passing userId triggers personalized rule-based affinities.
+                // If not passed (guest), it triggers fallback trending rules.
+                const userIdParam = user?.id ? `?userId=${user.id}` : '';
+                const response = await api.get(`/artworks/recommendations${userIdParam}`);
+                setRecommendations(response.data);
+            } catch (err) {
+                console.error("Failed to load recommendations", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        // Attempt fetch on mount or user login state change
+        fetchRecommendations();
+    }, [user?.id]);
+
     return (
         <div style={{ padding: '2rem 0' }}>
             {/* Hero Section */}
@@ -39,6 +65,28 @@ const Home = () => {
                     </Link>
                 </div>
             </section>
+
+            {/* Recommendations Section */}
+            {!loading && recommendations.length > 0 && (
+                <section style={{ marginBottom: '5rem' }} className="reveal-up">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
+                        <Sparkles color="var(--primary)" size={32} />
+                        <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Custom Curated For <span style={{ color: 'var(--primary)' }}>You</span></h2>
+                    </div>
+                    <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1.1rem' }}>
+                        {user ? "Personalized recommendations using Category and Artist Affinity rules based on your collecting history." : "Discover trending masterpieces hand-picked for new collectors."}
+                    </p>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                        gap: '2rem'
+                    }}>
+                        {recommendations.slice(0, 4).map(art => (
+                            <ArtworkCard key={art.id} artwork={art} />
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {/* Features Section */}
             <section style={{

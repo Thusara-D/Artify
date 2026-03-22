@@ -1,0 +1,435 @@
+﻿
+[ERROR] COMPILATION ERROR : 
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[26,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[29,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[32,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[39,18] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[40,18] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[41,18] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[42,18] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[43,18] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[47,14] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[52,14] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[26,36] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[27,34] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[28,43] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[34,13] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[41,32] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,32] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,49] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,73] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[50,16] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[53,16] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[56,104] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[56,56] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[65,40] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[66,46] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[67,40] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[69,43] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[70,39] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[71,48] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[72,52] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[75,88] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[84,88] cannot find 
+symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[55,69] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[55,97] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[76,58] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[79,27] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[82,55] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[85,27] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[90,39] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[91,36] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[92,54] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[93,38] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[94,36] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[96,45] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[124,13] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[127,52] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[129,34] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[33,63] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[48,14] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[53,80] cannot find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[36,50] cannot 
+find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[41,21] cannot 
+find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[42,21] cannot 
+find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[43,21] cannot 
+find symbol
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[44,21] cannot 
+find symbol
+[INFO] 54 errors 
+[ERROR] Failed to execute goal 
+org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) 
+on project backend: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[26,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[29,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[32,33] constructor Role in 
+class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[39,18] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[40,18] cannot find symbol
+[ERROR]   symbol:   method setUsername(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[41,18] cannot find symbol
+[ERROR]   symbol:   method setEmail(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[42,18] cannot find symbol
+[ERROR]   symbol:   method setAddress(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[43,18] cannot find symbol
+[ERROR]   symbol:   method setPhone(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[47,14] cannot find symbol
+[ERROR]   symbol:   method setPassword(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/config/DataInitializer.java:[52,14] cannot find symbol
+[ERROR]   symbol:   method 
+setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[26,36] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable userDetails of type 
+com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[27,34] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable userDetails of type 
+com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[28,43] cannot find symbol
+[ERROR]   symbol:   method getProfilePicture()
+[ERROR]   location: variable userDetails of type 
+com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/UserService.java:[34,13] cannot find symbol
+[ERROR]   symbol:   method setActive(boolean)
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[41,32] cannot find symbol
+[ERROR]   symbol:   method isDeleted()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,32] cannot find symbol
+[ERROR]   symbol:   method isDeleted()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,49] cannot find symbol
+[ERROR]   symbol:   method getStockQuantity()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/service/ArtworkService.java:[48,73] cannot find symbol
+[ERROR]   symbol:   method getMinStockThreshold()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[50,16] cannot find 
+symbol
+[ERROR]   symbol:   method setImageUrl(java.lang.String)
+[ERROR]   location: variable artwork of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[53,16] cannot find 
+symbol
+[ERROR]   symbol:   method setArtist(com.artselling.backend.entity.User)
+[ERROR]   location: variable artwork of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[56,104] cannot find 
+symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable saved of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[56,56] cannot find 
+symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable artist of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[65,40] cannot find 
+symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[66,46] cannot find 
+symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[67,40] cannot find 
+symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[69,43] cannot find 
+symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[70,39] cannot find 
+symbol
+[ERROR]   symbol:   method getTags()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[71,48] cannot find 
+symbol
+[ERROR]   symbol:   method getStockQuantity()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[72,52] cannot find 
+symbol
+[ERROR]   symbol:   method getMinStockThreshold()
+[ERROR]   location: variable artworkDetails of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[75,88] cannot find 
+symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable updated of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/ArtworkController.java:[84,88] cannot find 
+symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable artwork of type 
+com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[55,69] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable loginRequest of type 
+com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[55,97] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable loginRequest of type 
+com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[76,58] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[79,27] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[82,55] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[85,27] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[90,39] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[91,36] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[92,54] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[93,38] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[94,36] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[96,45] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable signUpRequest of type 
+com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[124,13] cannot find symbol
+[ERROR]   symbol:   method 
+setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[127,52] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/AuthController.java:[129,34] constructor 
+MessageResponse in class 
+com.artselling.backend.payload.response.MessageResponse cannot be applied to 
+given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[33,63] cannot find symbol
+[ERROR]   symbol:   method getArtwork()
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[48,14] cannot find symbol
+[ERROR]   symbol:   method 
+setStatus(com.artselling.backend.entity.Offer.OfferStatus)
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/controller/OfferController.java:[53,80] cannot find symbol
+[ERROR]   symbol:   method getArtwork()
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[36,50] cannot 
+find symbol
+[ERROR]   symbol:   method getRoles()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[41,21] cannot 
+find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[42,21] cannot 
+find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[43,21] cannot 
+find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/c
+om/artselling/backend/security/services/UserDetailsImpl.java:[44,21] cannot 
+find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e 
+switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please 
+read the following articles:
+[ERROR] [Help 1] 
+http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+

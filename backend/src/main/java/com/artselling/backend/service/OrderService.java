@@ -5,8 +5,11 @@ import com.artselling.backend.entity.EOrderStatus;
 import com.artselling.backend.entity.Order;
 import com.artselling.backend.entity.OrderItem;
 import com.artselling.backend.entity.User;
-import com.artselling.backend.repository.OrderRepository;
 import com.artselling.backend.repository.ArtworkRepository;
+import com.artselling.backend.repository.OrderRepository;
+import com.artselling.backend.repository.ReservationRepository;
+import com.artselling.backend.entity.Reservation;
+import com.artselling.backend.entity.EReservationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +29,9 @@ public class OrderService {
     private ArtworkRepository artworkRepository;
 
     @Autowired
+    private ReservationRepository reservationRepository;
+
+    @Autowired
     private ActivityLogService activityLogService;
 
     @Autowired
@@ -41,13 +47,26 @@ public class OrderService {
             Artwork artwork = artworkRepository.findById(artworkId)
                     .orElseThrow(() -> new RuntimeException("Artwork not found with id: " + item.getArtwork().getId()));
 
-            if (artwork.getStockQuantity() < item.getQuantity()) {
-                throw new RuntimeException("Insufficient stock for: " + artwork.getTitle());
+            // Check for active reservation
+            Optional<Reservation> optRes = reservationRepository.findByUserAndArtworkAndStatus(order.getUser(), artwork,
+                    EReservationStatus.ACTIVE);
+            if (optRes.isPresent() && optRes.get().getQuantity() >= item.getQuantity()) {
+                // Consume reservation stock
+                Reservation res = optRes.get();
+                res.setQuantity(res.getQuantity() - item.getQuantity());
+                if (res.getQuantity() == 0) {
+                    res.setStatus(EReservationStatus.CONSUMED);
+                }
+                reservationRepository.save(res);
+                // DO NOT subtract stock again, as it was subtracted during reservation
+            } else {
+                // Normal validation and stock reduction
+                if (artwork.getStockQuantity() < item.getQuantity()) {
+                    throw new RuntimeException("Insufficient stock for: " + artwork.getTitle());
+                }
+                artwork.setStockQuantity(artwork.getStockQuantity() - item.getQuantity());
+                artworkRepository.save(artwork);
             }
-
-            // Reduce stock
-            artwork.setStockQuantity(artwork.getStockQuantity() - item.getQuantity());
-            artworkRepository.save(artwork);
 
             // Associate the full artwork entity
             item.setArtwork(artwork);
@@ -121,15 +140,17 @@ public class OrderService {
         }
 
         Order savedOrder = orderRepository.save(order);
-        
+
         String logUser = "system";
         if (order.getUser() != null) {
             logUser = order.getUser().getUsername();
         }
-        activityLogService.log("ORDER_CONFIRMED", logUser, "Confirmed shipment and set delivery date for order #" + savedOrder.getId());
+        activityLogService.log("ORDER_CONFIRMED", logUser,
+                "Confirmed shipment and set delivery date for order #" + savedOrder.getId());
 
         // Send Email Notification
-        emailService.sendOrderStatusEmail(order.getUser(), savedOrder, "Your shipment has been confirmed and scheduled for dispatch.");
+        emailService.sendOrderStatusEmail(order.getUser(), savedOrder,
+                "Your shipment has been confirmed and scheduled for dispatch.");
 
         return savedOrder;
     }
@@ -137,18 +158,19 @@ public class OrderService {
     @Transactional
     public Order updateOrderStatus(Long id, String statusString) {
         Order order = getOrderById(id);
-        
+
         try {
             EOrderStatus newStatus = EOrderStatus.valueOf(statusString);
             order.setStatus(newStatus);
             Order savedOrder = orderRepository.save(order);
-            activityLogService.log("ORDER_STATUS_CHANGED", "admin", "Updated order #" + id + " status to " + statusString);
-            
+            activityLogService.log("ORDER_STATUS_CHANGED", "admin",
+                    "Updated order #" + id + " status to " + statusString);
+
             // Send Email Notification for specific delivery milestones
-            if (newStatus == EOrderStatus.SHIPPED || 
-                newStatus == EOrderStatus.OUT_FOR_DELIVERY || 
-                newStatus == EOrderStatus.DELIVERED) {
-                
+            if (newStatus == EOrderStatus.SHIPPED ||
+                    newStatus == EOrderStatus.OUT_FOR_DELIVERY ||
+                    newStatus == EOrderStatus.DELIVERED) {
+
                 String customMsg = "Your order status has been successfully updated to " + newStatus.toString() + ".";
                 if (newStatus == EOrderStatus.DELIVERED) {
                     customMsg = "Great news! Your masterpiece has been delivered. Enjoy!";
@@ -165,11 +187,11 @@ public class OrderService {
     @Transactional
     public Order updateShippingAddress(Long id, String newAddress, String newPhoneNumber) {
         Order order = getOrderById(id);
-        
+
         // Only allow modification if not yet shipped
-        if (order.getStatus() == EOrderStatus.SHIPPED || 
-            order.getStatus() == EOrderStatus.OUT_FOR_DELIVERY || 
-            order.getStatus() == EOrderStatus.DELIVERED) {
+        if (order.getStatus() == EOrderStatus.SHIPPED ||
+                order.getStatus() == EOrderStatus.OUT_FOR_DELIVERY ||
+                order.getStatus() == EOrderStatus.DELIVERED) {
             throw new RuntimeException("Cannot modify shipping information after the order has been dispatched.");
         }
 
@@ -193,7 +215,7 @@ public class OrderService {
             activityLogService.log("SHIPPING_INFO_UPDATED", "admin", "Updated shipping details for order #" + id);
             return savedOrder;
         }
-        
+
         return order;
     }
 
@@ -201,10 +223,10 @@ public class OrderService {
     public Order cancelOrder(Long id) {
         Order order = getOrderById(id);
 
-        if (order.getStatus() == EOrderStatus.SHIPPED || 
-            order.getStatus() == EOrderStatus.OUT_FOR_DELIVERY || 
-            order.getStatus() == EOrderStatus.DELIVERED ||
-            order.getStatus() == EOrderStatus.CANCELLED) {
+        if (order.getStatus() == EOrderStatus.SHIPPED ||
+                order.getStatus() == EOrderStatus.OUT_FOR_DELIVERY ||
+                order.getStatus() == EOrderStatus.DELIVERED ||
+                order.getStatus() == EOrderStatus.CANCELLED) {
             throw new RuntimeException("Cannot cancel an order that has already been dispatched or cancelled.");
         }
 
@@ -224,9 +246,9 @@ public class OrderService {
 
         order.setStatus(EOrderStatus.CANCELLED);
         Order savedOrder = orderRepository.save(order);
-        
+
         activityLogService.log("ORDER_CANCELLED", "admin", "Cancelled order #" + id + " and restored stock");
-        
+
         return savedOrder;
     }
 }

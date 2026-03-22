@@ -14,6 +14,9 @@ public class ArtworkService {
     @Autowired
     private ArtworkRepository artworkRepository;
 
+    @Autowired
+    private RecommendationService recommendationService;
+
     public List<Artwork> getAllArtworks() {
         return artworkRepository.findByDeletedFalse();
     }
@@ -35,12 +38,7 @@ public class ArtworkService {
     }
 
     public List<Artwork> getRecommendations(Long userId) {
-        // Simple recommendation logic: Top 5 latest artworks for now
-        // In a real app, this would use user preferences/history
-        return artworkRepository.findAll().stream()
-                .filter(a -> !a.isDeleted())
-                .limit(5)
-                .collect(Collectors.toList());
+        return recommendationService.getRuleBasedRecommendations(userId);
     }
 
     public List<Artwork> getLowStockArtworks() {
