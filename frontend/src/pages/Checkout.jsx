@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import OrderService from '../services/order.service';
@@ -21,6 +21,57 @@ const CheckoutComponent = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
+    const [timeLeft, setTimeLeft] = useState(null);
+    const [reservationExpired, setReservationExpired] = useState(false);
+
+    useEffect(() => {
+        if (cart.length === 0) return;
+
+        let interval;
+        const initReservation = async () => {
+            try {
+                const payload = {
+                    items: cart.map(item => ({
+                        artwork: { id: item.id },
+                        quantity: item.quantity
+                    }))
+                };
+                const res = await api.post('/reservations/create', payload);
+                const expiresAt = new Date(res.data.expiresAt).getTime();
+
+                interval = setInterval(() => {
+                    const now = new Date().getTime();
+                    const distance = expiresAt - now;
+                    if (distance <= 0) {
+                        clearInterval(interval);
+                        setTimeLeft('00:00');
+                        setReservationExpired(true);
+                    } else {
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        setTimeLeft(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+                    }
+                }, 1000);
+            } catch (err) {
+                console.error("Failed to create reservation", err);
+                const errorMessage = err.response?.data?.message || err.response?.data || err.message || "Failed to reserve items.";
+                setError(typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage));
+            }
+        };
+
+        initReservation();
+
+        return () => {
+            if (interval) clearInterval(interval);
+        };
+    }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        if (reservationExpired) {
+            alert("Your 10-minute hold on these items has expired. You will be redirected to the cart.");
+            navigate('/cart');
+        }
+    }, [reservationExpired, navigate]);
 
     const [details, setDetails] = useState({
         shippingAddress: user?.address || '',
@@ -140,7 +191,15 @@ const CheckoutComponent = () => {
                 <button type="button" onClick={() => navigate('/cart')} style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', cursor: 'pointer', fontWeight: 'bold', marginBottom: '1rem' }}>
                     <ArrowLeft size={18} /> Back to Cart
                 </button>
-                <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>Finalize <span style={{ color: 'var(--primary)' }}>Checkout</span></h1>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>Finalize <span style={{ color: 'var(--primary)' }}>Checkout</span></h1>
+                    {timeLeft && !success && (
+                        <div style={{ background: '#fef2f2', color: '#ef4444', padding: '10px 20px', borderRadius: '20px', fontWeight: 'bold', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 15px rgba(239, 68, 68, 0.2)' }}>
+                            <span>⏳ Hold expires in:</span>
+                            <span>{timeLeft}</span>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 0.8fr', gap: '3rem', alignItems: 'start' }}>
@@ -195,8 +254,8 @@ const CheckoutComponent = () => {
 
                     {error && <div style={{ background: 'rgba(244, 63, 94, 0.1)', color: 'var(--secondary)', padding: '1rem', borderRadius: '12px', fontWeight: 'bold' }}>{error}</div>}
 
-                    <button type="submit" disabled={loading || !stripe} className="btn btn-primary" style={{ padding: '22px', fontSize: '1.2rem', borderRadius: '25px', boxShadow: '0 20px 40px rgba(99, 102, 241, 0.2)' }}>
-                        {loading ? 'Processing Payment...' : `Complete Payment - Rs.${finalTotal.toFixed(2)}`}
+                    <button type="submit" disabled={loading || !stripe || reservationExpired} className="btn btn-primary" style={{ padding: '22px', fontSize: '1.2rem', borderRadius: '25px', boxShadow: '0 20px 40px rgba(99, 102, 241, 0.2)' }}>
+                        {loading ? 'Processing Payment...' : reservationExpired ? 'Reservation Expired' : `Complete Payment - Rs.${finalTotal.toFixed(2)}`}
                     </button>
                 </form>
 

@@ -1,26 +1,2 @@
-# IDEs
-.idea/
-.vscode/
-*.iml
-
-# OS files
-.DS_Store
-**/.DS_Store
-
-# Backend
 backend/target/
-backend/*.log
-backend/*.txt
-!backend/CMakeLists.txt
-backend/mvn_path.txt
-
-# Directory uploads
-uploads/
-backend/uploads/
-
-# Frontend (vite)
 frontend/node_modules/
-frontend/dist/
-frontend/npm-debug.log
-frontend/yarn-error.log
-frontend/yarn.log
