@@ -1,0 +1,450 @@
+﻿mvn.cmd : WARNING: A restricted method in java.lang.System has been called
+At line:1 char:128
++ ... ).FullName; & $mvnPath clean compile -e > maven_compile_errors.log 2> ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: A rest...has been called: 
+   String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: java.lang.System::load has been called by 
+org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/C:/Program
+%20Files/JetBrains/IntelliJ%20IDEA%202025.2/plugins/maven/lib/maven3/lib/jansi-2
+.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers 
+in this module
+WARNING: Restricted methods will be blocked in a future release unless native 
+access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by 
+com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/C:/Pr
+ogram%20Files/JetBrains/IntelliJ%20IDEA%202025.2/plugins/maven/lib/maven3/lib/gu
+ava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class 
+com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.artselling:backend >-----------------------
+[INFO] Building ArtSelling 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ backend ---
+[INFO] Deleting C:\Users\thakshila uddeepana\Desktop\project IT\backend\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 33 source files with javac [debug parameters release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[26,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+  required: no arguments
+  found:    <nulltype>,com.artselling.backend.entity.ERole
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[29,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+  required: no arguments
+  found:    <nulltype>,com.artselling.backend.entity.ERole
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[32,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+  required: no arguments
+  found:    <nulltype>,com.artselling.backend.entity.ERole
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[39,18] cannot find symbol
+  symbol:   method getId()
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[40,18] cannot find symbol
+  symbol:   method setUsername(java.lang.String)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[41,18] cannot find symbol
+  symbol:   method setEmail(java.lang.String)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[42,18] cannot find symbol
+  symbol:   method setAddress(java.lang.String)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[43,18] cannot find symbol
+  symbol:   method setPhone(java.lang.String)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[47,14] cannot find symbol
+  symbol:   method setPassword(java.lang.String)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[52,14] cannot find symbol
+  symbol:   method setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+  location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[26,36] cannot find symbol
+  symbol:   method getAddress()
+  location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[27,34] cannot find symbol
+  symbol:   method getPhone()
+  location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[28,43] cannot find symbol
+  symbol:   method getProfilePicture()
+  location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[34,13] cannot find symbol
+  symbol:   method setActive(boolean)
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[41,32] cannot find symbol
+  symbol:   method isDeleted()
+  location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,32] cannot find symbol
+  symbol:   method isDeleted()
+  location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,49] cannot find symbol
+  symbol:   method getStockQuantity()
+  location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,73] cannot find symbol
+  symbol:   method getMinStockThreshold()
+  location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[50,16] cannot find symbol
+  symbol:   method setImageUrl(java.lang.String)
+  location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[53,16] cannot find symbol
+  symbol:   method setArtist(com.artselling.backend.entity.User)
+  location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[56,104] cannot find symbol
+  symbol:   method getTitle()
+  location: variable saved of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[56,56] cannot find symbol
+  symbol:   method getUsername()
+  location: variable artist of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[65,40] cannot find symbol
+  symbol:   method getTitle()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[66,46] cannot find symbol
+  symbol:   method getDescription()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[67,40] cannot find symbol
+  symbol:   method getPrice()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[69,43] cannot find symbol
+  symbol:   method getCategory()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[70,39] cannot find symbol
+  symbol:   method getTags()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[71,48] cannot find symbol
+  symbol:   method getStockQuantity()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[72,52] cannot find symbol
+  symbol:   method getMinStockThreshold()
+  location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[75,88] cannot find symbol
+  symbol:   method getTitle()
+  location: variable updated of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[84,88] cannot find symbol
+  symbol:   method getTitle()
+  location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[55,69] cannot find symbol
+  symbol:   method getUsername()
+  location: variable loginRequest of type com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[55,97] cannot find symbol
+  symbol:   method getPassword()
+  location: variable loginRequest of type com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[76,58] cannot find symbol
+  symbol:   method getUsername()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[79,27] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[82,55] cannot find symbol
+  symbol:   method getEmail()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[85,27] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[90,39] cannot find symbol
+  symbol:   method getUsername()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[91,36] cannot find symbol
+  symbol:   method getEmail()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[92,54] cannot find symbol
+  symbol:   method getPassword()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[93,38] cannot find symbol
+  symbol:   method getAddress()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[94,36] cannot find symbol
+  symbol:   method getPhone()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[96,45] cannot find symbol
+  symbol:   method getRole()
+  location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[124,13] cannot find symbol
+  symbol:   method setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[127,52] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[129,34] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[33,63] cannot find symbol
+  symbol:   method getArtwork()
+  location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[48,14] cannot find symbol
+  symbol:   method setStatus(com.artselling.backend.entity.Offer.OfferStatus)
+  location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[53,80] cannot find symbol
+  symbol:   method getArtwork()
+  location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[36,50] cannot find symbol
+  symbol:   method getRoles()
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[41,21] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[42,21] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[43,21] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[44,21] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.artselling.backend.entity.User
+[INFO] 54 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.556 s
+[INFO] Finished at: 2026-02-27T23:52:18+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project backend: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[26,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[29,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[32,33] constructor Role in class com.artselling.backend.entity.Role cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    <nulltype>,com.artselling.backend.entity.ERole
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[39,18] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[40,18] cannot find symbol
+[ERROR]   symbol:   method setUsername(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[41,18] cannot find symbol
+[ERROR]   symbol:   method setEmail(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[42,18] cannot find symbol
+[ERROR]   symbol:   method setAddress(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[43,18] cannot find symbol
+[ERROR]   symbol:   method setPhone(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[47,14] cannot find symbol
+[ERROR]   symbol:   method setPassword(java.lang.String)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/config/DataInitializer.java:[52,14] cannot find symbol
+[ERROR]   symbol:   method setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+[ERROR]   location: variable admin of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[26,36] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[27,34] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[28,43] cannot find symbol
+[ERROR]   symbol:   method getProfilePicture()
+[ERROR]   location: variable userDetails of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/UserService.java:[34,13] cannot find symbol
+[ERROR]   symbol:   method setActive(boolean)
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[41,32] cannot find symbol
+[ERROR]   symbol:   method isDeleted()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,32] cannot find symbol
+[ERROR]   symbol:   method isDeleted()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,49] cannot find symbol
+[ERROR]   symbol:   method getStockQuantity()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/service/ArtworkService.java:[48,73] cannot find symbol
+[ERROR]   symbol:   method getMinStockThreshold()
+[ERROR]   location: variable a of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[50,16] cannot find symbol
+[ERROR]   symbol:   method setImageUrl(java.lang.String)
+[ERROR]   location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[53,16] cannot find symbol
+[ERROR]   symbol:   method setArtist(com.artselling.backend.entity.User)
+[ERROR]   location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[56,104] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable saved of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[56,56] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable artist of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[65,40] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[66,46] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[67,40] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[69,43] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[70,39] cannot find symbol
+[ERROR]   symbol:   method getTags()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[71,48] cannot find symbol
+[ERROR]   symbol:   method getStockQuantity()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[72,52] cannot find symbol
+[ERROR]   symbol:   method getMinStockThreshold()
+[ERROR]   location: variable artworkDetails of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[75,88] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable updated of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/ArtworkController.java:[84,88] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable artwork of type com.artselling.backend.entity.Artwork
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[55,69] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable loginRequest of type com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[55,97] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable loginRequest of type com.artselling.backend.payload.request.LoginRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[76,58] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[79,27] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[82,55] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[85,27] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[90,39] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[91,36] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[92,54] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[93,38] cannot find symbol
+[ERROR]   symbol:   method getAddress()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[94,36] cannot find symbol
+[ERROR]   symbol:   method getPhone()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[96,45] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable signUpRequest of type com.artselling.backend.payload.request.SignupRequest
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[124,13] cannot find symbol
+[ERROR]   symbol:   method setRoles(java.util.Set<com.artselling.backend.entity.Role>)
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[127,52] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/AuthController.java:[129,34] constructor MessageResponse in class com.artselling.backend.payload.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[33,63] cannot find symbol
+[ERROR]   symbol:   method getArtwork()
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[48,14] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.artselling.backend.entity.Offer.OfferStatus)
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/controller/OfferController.java:[53,80] cannot find symbol
+[ERROR]   symbol:   method getArtwork()
+[ERROR]   location: variable offer of type com.artselling.backend.entity.Offer
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[36,50] cannot find symbol
+[ERROR]   symbol:   method getRoles()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[41,21] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[42,21] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[43,21] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] /C:/Users/thakshila uddeepana/Desktop/project IT/backend/src/main/java/com/artselling/backend/security/services/UserDetailsImpl.java:[44,21] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.artselling.backend.entity.User
+[ERROR] -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project backend: Compilation failure
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:104)
+    at java.lang.reflect.Method.invoke (Method.java:565)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compilation failure
+    at org.apache.maven.plugin.compiler.AbstractCompilerMojo.execute (AbstractCompilerMojo.java:1309)
+    at org.apache.maven.plugin.compiler.CompilerMojo.execute (CompilerMojo.java:215)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:104)
+    at java.lang.reflect.Method.invoke (Method.java:565)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[ERROR] 
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

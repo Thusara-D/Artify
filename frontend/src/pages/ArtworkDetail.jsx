@@ -6,17 +6,18 @@ import {
 import ArtworkService from '../services/artwork.service';
 import OfferService from '../services/offer.service';
 import ReviewService from '../services/review.service';
-import WishlistService from '../services/wishlist.service';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import StarRating from '../components/StarRating';
 import ReviewList from '../components/ReviewList';
 
 const ArtworkDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user, isCustomer } = useAuth();
+    const { user, isCustomer, isAdmin } = useAuth();
     const { addToCart } = useCart();
+    const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
     const [artwork, setArtwork] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -24,7 +25,19 @@ const ArtworkDetail = () => {
     const [offerPrice, setOfferPrice] = useState('');
     const [bidding, setBidding] = useState(false);
 
-    // Review State
+    const inWishlist = artwork ? wishlist?.find(item => item.artwork?.id === artwork.id) : null;
+
+    const handleWishlistToggle = () => {
+        if (!user) {
+            navigate('/login');
+            return;
+        }
+        if (inWishlist) {
+            removeFromWishlist(inWishlist.id);
+        } else if (artwork) {
+            addToWishlist(artwork);
+        }
+    };
     const [reviews, setReviews] = useState([]);
     const [avgRating, setAvgRating] = useState(0);
     const [reviewRating, setReviewRating] = useState(5);
@@ -32,9 +45,7 @@ const ArtworkDetail = () => {
     const [reviewImage, setReviewImage] = useState(null);
     const [submittingReview, setSubmittingReview] = useState(false);
 
-    // Wishlist State
-    const [folders, setFolders] = useState([]);
-    const [showWishlistModal, setShowWishlistModal] = useState(false);
+    // Wishlist State Removed
 
     useEffect(() => {
         const fetchArtwork = async () => {
@@ -50,9 +61,6 @@ const ArtworkDetail = () => {
             }
         };
         fetchArtwork();
-        if (isCustomer) {
-            loadFolders();
-        }
     }, [id, isCustomer]);
 
     const fetchReviewsAndRating = async () => {
@@ -65,15 +73,6 @@ const ArtworkDetail = () => {
             setAvgRating(avgRes.data);
         } catch (err) {
             console.error('Error fetching reviews:', err);
-        }
-    };
-
-    const loadFolders = async () => {
-        try {
-            const res = await WishlistService.getUserFolders();
-            setFolders(res.data);
-        } catch (err) {
-            console.error('Error loading folders:', err);
         }
     };
 
@@ -97,13 +96,24 @@ const ArtworkDetail = () => {
         }
     };
 
-    const handleAddToWishlist = async (folderId) => {
+    const handleDeleteReview = async (reviewId) => {
+        if (!window.confirm('Are you sure you want to delete this review?')) return;
         try {
-            await WishlistService.addItemToFolder(folderId, id);
-            setShowWishlistModal(false);
-            alert('Added to wishlist!');
+            await ReviewService.deleteReview(reviewId);
+            fetchReviewsAndRating();
+            alert('Review deleted!');
         } catch (err) {
-            alert(err.response?.data?.message || 'Error adding to wishlist');
+            alert(err.response?.data?.message || 'Error deleting review.');
+        }
+    };
+
+    const handleUpdateReview = async (reviewId, rating, comment) => {
+        try {
+            await ReviewService.updateReview(reviewId, rating, comment);
+            fetchReviewsAndRating();
+            alert('Review updated successfully!');
+        } catch (err) {
+            alert(err.response?.data?.message || 'Error updating review.');
         }
     };
 
@@ -299,12 +309,21 @@ const ArtworkDetail = () => {
                                         <ShoppingCart size={22} /> Add to Collection
                                     </button>
                                     <button
-                                        onClick={() => setShowWishlistModal(true)}
-                                        className="btn btn-outline"
-                                        style={{ padding: '22px', borderRadius: '25px', borderColor: '#eee' }}
-                                        title="Add to Wishlist"
+                                        onClick={handleWishlistToggle}
+                                        style={{
+                                            padding: '22px',
+                                            borderRadius: '25px',
+                                            background: 'white',
+                                            border: '1px solid #e2e8f0',
+                                            color: inWishlist ? '#ef4444' : 'var(--text-muted)',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
+                                        }}
                                     >
-                                        <Heart size={22} color="#ff4d4d" fill={showWishlistModal ? "#ff4d4d" : "none"} />
+                                        <Heart size={22} fill={inWishlist ? '#ef4444' : 'none'} color={inWishlist ? '#ef4444' : 'currentColor'} />
                                     </button>
                                 </div>
 
@@ -414,53 +433,17 @@ const ArtworkDetail = () => {
                 </div>
 
                 <div style={{ borderTop: '1px solid #eee', paddingTop: '3rem' }}>
-                    <ReviewList reviews={reviews} />
+                    <ReviewList
+                        reviews={reviews}
+                        user={user}
+                        isAdmin={isAdmin}
+                        isCustomer={isCustomer}
+                        onDelete={handleDeleteReview}
+                        onUpdate={handleUpdateReview}
+                    />
                 </div>
             </div>
 
-            {/* Wishlist Modal */}
-            {showWishlistModal && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000
-                }}>
-                    <div className="glass" style={{ padding: '2.5rem', borderRadius: '30px', width: '400px', maxWidth: '90%', background: 'white' }}>
-                        <h3 style={{ marginBottom: '1.5rem' }}>Choose Folder</h3>
-                        <div style={{ display: 'grid', gap: '0.8rem', maxHeight: '300px', overflowY: 'auto', paddingRight: '10px' }}>
-                            {folders.length > 0 ? folders.map(folder => (
-                                <button
-                                    key={folder.id}
-                                    onClick={() => handleAddToWishlist(folder.id)}
-                                    style={{
-                                        padding: '1rem', textAlign: 'left', background: '#f8fafc', border: '1px solid #eee',
-                                        borderRadius: '15px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.2s'
-                                    }}
-                                >
-                                    📁 {folder.name}
-                                </button>
-                            )) : (
-                                <p style={{ textAlign: 'center', color: '#888' }}>You don't have any folders yet. Create one in your Wishlist page first!</p>
-                            )}
-                        </div>
-                        <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-                            <button
-                                onClick={() => navigate('/wishlist')}
-                                className="btn"
-                                style={{ flex: 1, background: '#eee', color: '#333', padding: '10px' }}
-                            >
-                                Manage Folders
-                            </button>
-                            <button
-                                onClick={() => setShowWishlistModal(false)}
-                                className="btn"
-                                style={{ flex: 1, background: '#333', color: '#fff', padding: '10px' }}
-                            >
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

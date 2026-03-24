@@ -60,4 +60,36 @@ public class ReviewController {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteReview(@PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+        try {
+            reviewService.deleteReview(id, userDetails);
+            return ResponseEntity.ok(new MessageResponse("Review deleted successfully!"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateReview(@PathVariable Long id, @RequestBody java.util.Map<String, Object> payload) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+        try {
+            int rating = Integer.parseInt(payload.get("rating").toString());
+            String comment = payload.get("comment").toString();
+            Review review = reviewService.updateReview(id, rating, comment, userDetails);
+            return ResponseEntity.ok(review);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
 }
