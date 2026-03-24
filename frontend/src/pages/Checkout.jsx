@@ -7,6 +7,9 @@ import { CreditCard, Truck, Phone, MapPin, CheckCircle, ArrowLeft } from 'lucide
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import api from '../services/api';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 
 // Initialize Stripe with Publishable Key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || "pk_test_51TDbUz22ZCvOON3CI146C9CZGl4MM3G2t1m9eKc8pU7JTM3z3etUwrXCMM0wpAa2OAym8n9bHtblwR6yTgg3v3sN00hgLtOI6c");
@@ -23,6 +26,7 @@ const CheckoutComponent = () => {
     const [error, setError] = useState('');
     const [timeLeft, setTimeLeft] = useState(null);
     const [reservationExpired, setReservationExpired] = useState(false);
+    const [orderSnapshot, setOrderSnapshot] = useState(null);
 
     useEffect(() => {
         if (cart.length === 0) return;
@@ -144,11 +148,14 @@ const CheckoutComponent = () => {
             };
 
             await OrderService.placeOrder(orderData);
+            setOrderSnapshot({
+                shippingDetails: orderData.shippingDetails,
+                items: cart.map(item => ({ ...item })),
+                deliveryFee: deliveryFee,
+                subtotal: cartTotal
+            });
+            clearCart();
             setSuccess(true);
-            setTimeout(() => {
-                clearCart();
-                navigate('/orders');
-            }, 2500);
         } catch (err) {
             console.error("Payment error:", err);
             const errorMessage = err.response?.data?.message || err.response?.data || err.message || 'Failed to place order. Connection issue.';
@@ -156,6 +163,61 @@ const CheckoutComponent = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const generateInvoicePDF = () => {
+        if (!orderSnapshot) return;
+
+        const doc = new jsPDF();
+
+        // Header
+        doc.setFontSize(22);
+        doc.setTextColor(16, 185, 129); // #10b981
+        doc.text('ArtSelling Invoice', 14, 22);
+
+        doc.setFontSize(11);
+        doc.setTextColor(100);
+        doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 32);
+        doc.text(`Name: ${user?.name || 'Guest'}`, 14, 38);
+        doc.text(`Phone: ${orderSnapshot.shippingDetails.phoneNumber}`, 14, 44);
+        doc.text(`Shipping Address: ${orderSnapshot.shippingDetails.address}`, 14, 50);
+
+        // Table
+        const tableColumn = ["Item", "Quantity", "Price (Rs)", "Total (Rs)"];
+        const tableRows = [];
+
+        orderSnapshot.items.forEach(item => {
+            const itemData = [
+                item.title,
+                item.quantity,
+                parseFloat(item.price).toFixed(2),
+                (item.price * item.quantity).toFixed(2)
+            ];
+            tableRows.push(itemData);
+        });
+
+        autoTable(doc, {
+            startY: 60,
+            head: [tableColumn],
+            body: tableRows,
+            theme: 'striped',
+            headStyles: { fillColor: [16, 185, 129] },
+        });
+
+        // Footer Totals
+        const finalY = doc.lastAutoTable ? doc.lastAutoTable.finalY : 60;
+        doc.setFontSize(12);
+        doc.setTextColor(0);
+
+        doc.text(`Subtotal: Rs. ${orderSnapshot.subtotal.toFixed(2)}`, 14, finalY + 10);
+        doc.text(`Delivery Fee: Rs. ${orderSnapshot.deliveryFee.toFixed(2)}`, 14, finalY + 18);
+
+        doc.setFontSize(14);
+        doc.setTextColor(16, 185, 129);
+        doc.text(`Total Amount: Rs. ${(orderSnapshot.subtotal + orderSnapshot.deliveryFee).toFixed(2)}`, 14, finalY + 28);
+
+        // Save
+        doc.save(`Invoice_${new Date().getTime()}.pdf`);
     };
 
     if (success) {
@@ -171,9 +233,13 @@ const CheckoutComponent = () => {
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.7', marginBottom: '3rem' }}>
                         Thank you for your acquisition. Your payment was verified securely by Stripe.
                     </p>
-                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                        <div className="loading-spinner" style={{ width: '20px', height: '20px', border: '3px solid #f3f3f3', borderTop: '3px solid var(--primary)' }}></div>
-                        <span style={{ fontWeight: 'bold', color: 'var(--text-muted)' }}>Redirecting to Gallery Archives...</span>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <button onClick={generateInvoicePDF} className="btn btn-primary" style={{ padding: '15px 30px', fontSize: '1.1rem', borderRadius: '25px', boxShadow: '0 10px 20px rgba(99, 102, 241, 0.2)' }}>
+                            Generate Invoice PDF
+                        </button>
+                        <button onClick={() => navigate('/orders')} className="btn btn-secondary" style={{ padding: '15px 30px', fontSize: '1.1rem', borderRadius: '25px', display: 'flex', gap: '8px', alignItems: 'center', cursor: 'pointer', background: '#f1f5f9', border: 'none', color: 'var(--text-main)', fontWeight: 'bold' }}>
+                            View Orders
+                        </button>
                     </div>
                 </div>
             </div>
