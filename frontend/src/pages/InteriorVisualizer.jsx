@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Canvas, FabricImage } from 'fabric';
-import { ArrowLeft, Upload, Download, Maximize2, Move, RotateCcw, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Upload, Download, Maximize2, Move, RotateCcw, Image as ImageIcon, PlayCircle, X } from 'lucide-react';
 import ArtworkService from '../services/artwork.service';
 
 const InteriorVisualizer = () => {
@@ -12,6 +12,7 @@ const InteriorVisualizer = () => {
     const [artwork, setArtwork] = useState(null);
     const [loading, setLoading] = useState(true);
     const [roomUploaded, setRoomUploaded] = useState(false);
+    const [showDemo, setShowDemo] = useState(false);
 
     useEffect(() => {
         const fetchArtwork = async () => {
@@ -45,16 +46,9 @@ const InteriorVisualizer = () => {
         };
     }, [loading]);
 
-    const handleRoomUpload = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = async (f) => {
-            const data = f.target.result;
-
-            // Background image handling in Fabric 7
-            const img = await FabricImage.fromURL(data);
+    const setBackgroundImage = async (imageUrl) => {
+        try {
+            const img = await FabricImage.fromURL(imageUrl);
 
             const canvas = fabricRef.current;
             if (!canvas || !img) return;
@@ -78,16 +72,39 @@ const InteriorVisualizer = () => {
                 name: 'background'
             });
 
-            canvas.clear();
+            const existingBg = canvas.getObjects().find(obj => obj.name === 'background');
+            if (existingBg) {
+                canvas.remove(existingBg);
+            }
+
             canvas.add(img);
             canvas.sendObjectToBack(img);
             canvas.renderAll();
             setRoomUploaded(true);
 
-            // Add artwork automatically if it exists
-            if (artwork) addArtworkOverlay();
+            const existingArt = canvas.getObjects().find(obj => obj.name !== 'background');
+            if (artwork && !existingArt) {
+                addArtworkOverlay();
+            }
+        } catch (err) {
+            console.error('Failed to load background image:', err);
+        }
+    };
+
+    const handleRoomUpload = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async (f) => {
+            const data = f.target.result;
+            setBackgroundImage(data);
         };
         reader.readAsDataURL(file);
+    };
+
+    const handleTemplateSetup = (templatePath) => {
+        setBackgroundImage(templatePath);
     };
 
     const addArtworkOverlay = async () => {
@@ -150,9 +167,18 @@ const InteriorVisualizer = () => {
                 <ArrowLeft size={18} /> Back to Details
             </button>
 
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '3rem', position: 'relative' }}>
                 <h1 style={{ fontSize: '3rem', fontWeight: '900', margin: 0 }}>Wall <span style={{ color: 'var(--primary)' }}>Visualizer</span></h1>
                 <p style={{ color: 'var(--text-muted)' }}>Visualize "{artwork?.title}" in your own space.</p>
+                <div style={{ marginTop: '1rem' }}>
+                    <button
+                        onClick={() => setShowDemo(true)}
+                        className="btn btn-outline"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', borderRadius: '50px' }}
+                    >
+                        <PlayCircle size={18} /> See Demo
+                    </button>
+                </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem', alignItems: 'start' }}>
@@ -162,9 +188,21 @@ const InteriorVisualizer = () => {
                     {!roomUploaded && (
                         <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(5px)' }}>
                             <ImageIcon size={48} color="#94a3b8" style={{ marginBottom: '1rem' }} />
-                            <p style={{ color: '#475569', fontWeight: 'bold' }}>Step 1: Upload a photo of your room</p>
-                            <label className="btn btn-primary" style={{ cursor: 'pointer', marginTop: '1rem' }}>
-                                <Upload size={18} /> Upload Room Photo
+                            <p style={{ color: '#475569', fontWeight: 'bold' }}>Step 1: Choose a background</p>
+
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '1rem' }}>
+                                <button className="btn btn-primary" onClick={() => handleTemplateSetup('/room templates/living room 1.jpeg')}>
+                                    Template 1
+                                </button>
+                                <button className="btn btn-primary" onClick={() => handleTemplateSetup('/room templates/living room 2.png')}>
+                                    Template 2
+                                </button>
+                            </div>
+
+                            <div style={{ margin: '1rem 0', color: '#94a3b8' }}>or</div>
+
+                            <label className="btn btn-outline" style={{ cursor: 'pointer' }}>
+                                <Upload size={18} style={{ display: 'inline', marginRight: '5px' }} /> Upload Custom Photo
                                 <input type="file" hidden onChange={handleRoomUpload} accept="image/*" />
                             </label>
                         </div>
@@ -181,6 +219,22 @@ const InteriorVisualizer = () => {
                     </ul>
 
                     <div style={{ marginTop: '3rem', display: 'grid', gap: '1rem' }}>
+                        <div style={{ border: '1px solid #e2e8f0', padding: '15px', borderRadius: '12px' }}>
+                            <p style={{ margin: '0 0 10px 0', fontSize: '0.9rem', fontWeight: '600', color: '#475569' }}>Change Background</p>
+                            <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                                <button className="btn btn-outline" style={{ flex: 1, padding: '8px' }} onClick={() => handleTemplateSetup('/room templates/living room 1.jpeg')}>
+                                    Template 1
+                                </button>
+                                <button className="btn btn-outline" style={{ flex: 1, padding: '8px' }} onClick={() => handleTemplateSetup('/room templates/living room 2.png')}>
+                                    Template 2
+                                </button>
+                            </div>
+                            <label className="btn btn-outline" style={{ display: 'block', width: '100%', cursor: 'pointer', textAlign: 'center', padding: '8px', margin: 0 }}>
+                                <Upload size={16} style={{ display: 'inline', marginRight: '5px' }} /> Custom Image
+                                <input type="file" hidden onChange={handleRoomUpload} accept="image/*" />
+                            </label>
+                        </div>
+
                         <button
                             className="btn btn-primary"
                             onClick={handleDownload}
@@ -200,6 +254,32 @@ const InteriorVisualizer = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Demo Video Modal */}
+            {showDemo && (
+                <div style={{
+                    position: 'fixed', inset: 0, zIndex: 9999,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(5px)'
+                }}>
+                    <div style={{ position: 'relative', width: '90%', maxWidth: '1000px', background: '#000', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
+                        <button
+                            onClick={() => setShowDemo(false)}
+                            style={{ position: 'absolute', top: '15px', right: '15px', background: 'rgba(255,255,255,0.2)', border: 'none', color: '#fff', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10 }}
+                        >
+                            <X size={24} />
+                        </button>
+                        <video
+                            src="/image preview guide video/Artify - Google Chrome 2026-03-22 11-04-06.mp4"
+                            autoPlay
+                            loop
+                            controls
+                            muted
+                            style={{ width: '100%', display: 'block' }}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
