@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import WishlistService from '../services/wishlist.service';
 import ArtworkCard from '../components/ArtworkCard';
 
-const Wishlist = () => {//con
+const Wishlist = () => {//connd
     const [folders, setFolders] = useState([]);
     const [newFolderName, setNewFolderName] = useState('');
     const [activeFolderId, setActiveFolderId] = useState(null);
