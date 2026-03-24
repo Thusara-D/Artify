@@ -67,6 +67,14 @@ const Profile = () => {
         e.preventDefault();
         setMessage('');
         setError('');
+
+        // Phone number validation
+        const phoneRegex = /^[0-9]{10}$/;
+        if (profile.phone && !phoneRegex.test(profile.phone)) {
+            setError('Phone number must be exactly 10 digits.');
+            return;
+        }
+
         try {
             await UserService.updateUserProfile(user.id, profile);
             setMessage('Profile updated successfully!');
@@ -115,7 +123,7 @@ const Profile = () => {
                             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Phone Number</label>
                             <div style={{ position: 'relative' }}>
                                 <Phone size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                                <input name="phone" value={profile.phone || ''} onChange={handleChange} className="glass" style={{ width: '100%', padding: '12px 12px 12px 40px', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
+                                <input name="phone" value={profile.phone || ''} onChange={handleChange} className="glass" maxLength="10" placeholder="10-digit number" style={{ width: '100%', padding: '12px 12px 12px 40px', background: 'rgba(0,0,0,0.2)', color: 'white' }} />
                             </div>
                         </div>
 

@@ -28,10 +28,20 @@ const postReview = (artworkId, rating, comment, imageFile) => {
     });
 };
 
+const deleteReview = (reviewId) => {
+    return axios.delete(API_URL + reviewId, { headers: authHeader() });
+};
+
+const updateReview = (reviewId, rating, comment) => {
+    return axios.put(API_URL + reviewId, { rating, comment }, { headers: authHeader() });
+};
+
 const ReviewService = {
     getArtworkReviews,
     getAverageRating,
     postReview,
+    deleteReview,
+    updateReview,
 };
 
 export default ReviewService;

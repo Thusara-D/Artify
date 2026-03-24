@@ -1,11 +1,15 @@
 :root {
-  --primary: #4f46e5;
-  --secondary: #e11d48;
-  --accent: #0d9488;
-  --bg-main: #ffffff;
+  --primary: #8b5cf6;
+  --secondary: #ec4899;
+  --accent: #14b8a6;
+  --bg-main: #f3f4f6;
   --text-main: #1f2937;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
+  --text-muted: #4b5563;
+  --border-color: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-blur: 16px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
 
 * {
@@ -16,6 +20,10 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-image: url('/creative-bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   background-color: var(--bg-main);
   color: var(--text-main);
   line-height: 1.5;
@@ -41,7 +49,7 @@ h6 {
 
 .btn {
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
   font-weight: 600;
@@ -51,6 +59,7 @@ h6 {
   justify-content: center;
   gap: 8px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
@@ -59,7 +68,9 @@ h6 {
 }
 
 .btn-primary:hover {
-  background-color: #4338ca;
+  background-color: #7c3aed;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .btn-outline {
@@ -75,10 +86,13 @@ h6 {
 /* Simplified Card/Glass equivalent */
 .card,
 .glass {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  padding: 24px;
 }
 
 input,

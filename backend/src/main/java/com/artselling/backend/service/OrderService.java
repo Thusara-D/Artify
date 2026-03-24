@@ -206,6 +206,9 @@ public class OrderService {
             updated = true;
         }
         if (newPhoneNumber != null && !newPhoneNumber.trim().isEmpty()) {
+            if (!newPhoneNumber.matches("^\\d{10}$")) {
+                throw new RuntimeException("Phone number must be exactly 10 digits.");
+            }
             shipping.setPhoneNumber(newPhoneNumber);
             updated = true;
         }

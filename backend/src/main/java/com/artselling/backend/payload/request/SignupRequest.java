@@ -4,6 +4,7 @@ import java.util.Set;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class SignupRequest {
@@ -23,7 +24,12 @@ public class SignupRequest {
     private String password;
 
     private String address;
+
+    @NotBlank
+    @Size(min = 10, max = 10)
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String phone;
+
 
     public String getUsername() {
         return username;

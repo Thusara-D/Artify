@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Info, AlertTriangle, Sparkles, Send } from 'lucide-react';
+import { ShoppingCart, Info, AlertTriangle, Sparkles, Send, Heart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import OfferService from '../services/offer.service';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
 const ArtworkCard = ({ artwork }) => {
     const { user, isCustomer } = useAuth();
     const { addToCart } = useCart();
+    const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
     const navigate = useNavigate();
     const [offerPrice, setOfferPrice] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const inWishlist = wishlist?.find(item => item.artwork?.id === artwork.id);
+
+    const handleWishlistToggle = (e) => {
+        e.stopPropagation();
+        if (inWishlist) {
+            removeFromWishlist(inWishlist.id);
+        } else {
+            addToWishlist(artwork);
+        }
+    };
 
     const handleAddToCart = () => {
         if (!user) {
@@ -114,6 +127,30 @@ const ArtworkCard = ({ artwork }) => {
                     {stockStatus === 'Low Stock' ? <AlertTriangle size={12} /> : <Sparkles size={12} />}
                     {stockStatus}
                 </div>
+
+                {(isCustomer || !user) && (
+                    <button
+                        onClick={handleWishlistToggle}
+                        style={{
+                            position: 'absolute',
+                            top: '10px',
+                            right: '10px',
+                            padding: '8px',
+                            borderRadius: '50%',
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            border: 'none',
+                            color: inWishlist ? '#ef4444' : '#9ca3af',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                            zIndex: 10
+                        }}
+                    >
+                        <Heart size={16} fill={inWishlist ? '#ef4444' : 'none'} />
+                    </button>
+                )}
             </div>
 
             {/* Content Group */}
