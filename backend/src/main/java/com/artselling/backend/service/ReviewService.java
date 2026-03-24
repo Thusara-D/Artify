@@ -101,4 +101,48 @@ public class ReviewService {
         }
         return reviews;
     }
+
+    @Transactional
+    public void deleteReview(Long reviewId, com.artselling.backend.security.services.UserDetailsImpl userDetails) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+
+        boolean isAdmin = userDetails.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+        boolean isOwner = review.getUser().getId().equals(userDetails.getId());
+
+        if (!isAdmin && !isOwner) {
+            throw new RuntimeException("Unauthorized: You can only delete your own reviews.");
+        }
+
+        if (review.getImageUrl() != null && !review.getImageUrl().isEmpty()) {
+            try {
+                String path = review.getImageUrl().startsWith("/") ? review.getImageUrl().substring(1) : review.getImageUrl();
+                Path fileToDelete = Paths.get(path);
+                Files.deleteIfExists(fileToDelete);
+            } catch (IOException e) {
+                System.err.println("Failed to delete review image file: " + e.getMessage());
+            }
+        }
+
+        reviewRepository.delete(review);
+        activityLogService.log("DELETE_REVIEW", userDetails.getUsername(), "Deleted review ID: " + reviewId);
+    }
+
+    @Transactional
+    public Review updateReview(Long reviewId, int rating, String comment, com.artselling.backend.security.services.UserDetailsImpl userDetails) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+
+        if (!review.getUser().getId().equals(userDetails.getId())) {
+            throw new RuntimeException("Unauthorized: You can only edit your own reviews.");
+        }
+
+        review.setRating(rating);
+        review.setComment(comment);
+        Review savedReview = reviewRepository.save(review);
+        
+        activityLogService.log("UPDATE_REVIEW", userDetails.getUsername(), "Updated review ID: " + reviewId);
+        return savedReview;
+    }
 }

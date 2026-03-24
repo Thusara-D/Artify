@@ -96,6 +96,14 @@ const CheckoutComponent = () => {
         setLoading(true);
         setError('');
 
+        // Phone number validation
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(details.phoneNumber)) {
+            setError('Phone number must be exactly 10 digits.');
+            setLoading(false);
+            return;
+        }
+
         if (!stripe || !elements) {
             setLoading(false);
             return;
@@ -288,7 +296,7 @@ const CheckoutComponent = () => {
                                 <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontWeight: 'bold' }}>Active Phone Number</label>
                                 <div style={{ position: 'relative' }}>
                                     <Phone size={18} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                                    <input name="phoneNumber" value={details.phoneNumber} onChange={handleChange} required
+                                    <input name="phoneNumber" value={details.phoneNumber} onChange={handleChange} required maxLength="10" placeholder="10-digit number"
                                         style={{ width: '100%', padding: '14px 14px 14px 44px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '15px' }} />
                                 </div>
                             </div>

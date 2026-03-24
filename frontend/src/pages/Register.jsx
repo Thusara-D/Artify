@@ -27,6 +27,14 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+
+        // Phone number validation
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(formData.phone)) {
+            setError('Phone number must be exactly 10 digits.');
+            return;
+        }
+
         setLoading(true);
         try {
             await register(
@@ -132,7 +140,7 @@ const Register = () => {
                             <label style={{ display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Phone</label>
                             <div style={{ position: 'relative' }}>
                                 <Phone size={18} style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                                <input name="phone" value={formData.phone} onChange={handleChange} placeholder="+1 ..." style={{ width: '100%', padding: '14px 14px 14px 45px' }} />
+                                <input name="phone" value={formData.phone} onChange={handleChange} required placeholder="10-digit number" maxLength="10" style={{ width: '100%', padding: '14px 14px 14px 45px' }} />
                             </div>
                         </div>
                     </div>

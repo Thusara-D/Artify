@@ -79,8 +79,15 @@ const OrderHistory = () => {
         const newAddress = window.prompt("Edit Address:", order.shippingDetails.address);
         if (newAddress === null) return;
 
-        const newPhone = window.prompt("Edit Phone Number:", order.shippingDetails.phoneNumber);
-        if (newPhone === null) return;
+        let newPhone = order.shippingDetails.phoneNumber;
+        const phoneRegex = /^[0-9]{10}$/;
+
+        while (true) {
+            newPhone = window.prompt("Edit Phone Number (10 digits):", newPhone);
+            if (newPhone === null) return; // User cancelled
+            if (phoneRegex.test(newPhone)) break;
+            alert("Phone number must be exactly 10 digits.");
+        }
 
         try {
             await OrderService.updateShippingInfo(order.id, newAddress, newPhone);

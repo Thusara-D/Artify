@@ -23,6 +23,13 @@ public class UserService {
 
     public User updateProfile(Long id, User userDetails) {
         User user = getUserById(id);
+
+        if (userDetails.getPhone() != null && !userDetails.getPhone().trim().isEmpty()) {
+            if (!userDetails.getPhone().matches("^\\d{10}$")) {
+                throw new RuntimeException("Phone number must be exactly 10 digits.");
+            }
+        }
+
         user.setAddress(userDetails.getAddress());
         user.setPhone(userDetails.getPhone());
         user.setProfilePicture(userDetails.getProfilePicture());

@@ -1,2 +1,41 @@
-backend/target/
-frontend/node_modules/
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Build outputs
+target/
+dist/
+dist-ssr/
+build/
+bin/
+
+# Dependencies
+node_modules/
+jspm_packages/
+.npm/
+.yarn/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Project specific
+uploads/
+backend/uploads/
+backend/backend_log.txt
+backend/boot_error.txt
+backend/boot_log*.txt
+backend/compile_*.txt
+backend/errors*.txt
+backend/maven_compile_errors.log
+backend/mvn_path.txt
+backend/test.jpg

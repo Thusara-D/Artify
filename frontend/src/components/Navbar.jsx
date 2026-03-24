@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { ShoppingBag, ShoppingCart, Sparkles, PlusSquare, LayoutDashboard, LogOut, User, Gavel, Heart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
 const Navbar = () => {
     const { user, logout, isAdmin, isCustomer } = useAuth();
     const { cartCount } = useCart();
+    const { wishlist } = useWishlist();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -23,8 +25,11 @@ const Navbar = () => {
             position: 'sticky',
             top: '0',
             zIndex: 1000,
-            background: 'white',
-            borderBottom: '1px solid var(--border-color)'
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(var(--glass-blur))',
+            WebkitBackdropFilter: 'blur(var(--glass-blur))',
+            borderBottom: 'var(--glass-border)',
+            boxShadow: 'var(--glass-shadow)'
         }}>
             <Link to="/" style={{
                 fontSize: '1.5rem',
@@ -63,12 +68,17 @@ const Navbar = () => {
 
                 {isCustomer && (
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                        <Link to="/wishlist" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: '600', fontSize: '0.9rem' }}>
-                            <Heart size={16} /> Wishlist
-                        </Link>
                         <Link to="/orders" style={{ color: 'var(--text-main)', textDecoration: 'none', fontWeight: '600', fontSize: '0.9rem' }}>Orders</Link>
                         <Link to="/my-offers" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: '600', fontSize: '0.9rem' }}>
                             <Gavel size={16} /> Bids
+                        </Link>
+                        <Link to="/wishlist" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: '600', fontSize: '0.9rem', position: 'relative' }}>
+                            <Heart size={16} /> Wishlist
+                            {wishlist.length > 0 && (
+                                <span style={{ position: 'absolute', top: '-8px', right: '-12px', background: 'var(--primary)', color: 'white', fontSize: '0.7rem', minWidth: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '700', padding: '0 4px' }}>
+                                    {wishlist.length}
+                                </span>
+                            )}
                         </Link>
                         <Link to="/cart" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600', position: 'relative' }}>
                             <ShoppingCart size={18} />

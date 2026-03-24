@@ -1,31 +1,35 @@
 package com.artselling.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "order_items")
+@Table(name = "wishlists")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class OrderItem {
+public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    @JsonIgnore
-    private Order order;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artwork_id")
     private Artwork artwork;
 
-    private int quantity;
-    private BigDecimal price;
+    private LocalDateTime addedAt;
 
-    public OrderItem() {
+    public Wishlist() {
+        this.addedAt = LocalDateTime.now();
+    }
+
+    public Wishlist(User user, Artwork artwork) {
+        this();
+        this.user = user;
+        this.artwork = artwork;
     }
 
     public Long getId() {
@@ -36,12 +40,12 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public User getUser() {
+        return user;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Artwork getArtwork() {
@@ -52,19 +56,11 @@ public class OrderItem {
         this.artwork = artwork;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public LocalDateTime getAddedAt() {
+        return addedAt;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setAddedAt(LocalDateTime addedAt) {
+        this.addedAt = addedAt;
     }
 }

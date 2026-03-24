@@ -24,47 +24,50 @@ import OrderHistory from './pages/OrderHistory';
 import ArtworkDetail from './pages/ArtworkDetail';
 import InteriorVisualizer from './pages/InteriorVisualizer';
 import Wishlist from './pages/Wishlist';
+import { WishlistProvider } from './context/WishlistContext';
 
 function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <Router>
-          <div className="app">
-            <Navbar />
-            <main className="container" style={{ padding: '2rem 0', minHeight: '80vh' }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/catalog" element={<Catalog />} />
-                <Route path="/artwork/:id" element={<ArtworkDetail />} />
-                <Route path="/visualizer/:id" element={<InteriorVisualizer />} />
+        <WishlistProvider>
+          <Router>
+            <div className="app">
+              <Navbar />
+              <main className="container" style={{ padding: '2rem 0', minHeight: '80vh' }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/catalog" element={<Catalog />} />
+                  <Route path="/artwork/:id" element={<ArtworkDetail />} />
+                  <Route path="/visualizer/:id" element={<InteriorVisualizer />} />
 
-                <Route element={<ProtectedRoute allowedRoles={['ROLE_ADMIN']} />}>
-                  <Route path="/upload" element={<ArtworkUpload />} />
-                  <Route path="/admin" element={<AdminDashboard />} />
-                  <Route path="/admin/inventory" element={<Inventory />} />
-                  <Route path="/admin/offers" element={<OfferManagement />} />
-                  <Route path="/admin/orders" element={<OrderHistory />} />
-                  <Route path="/edit-art/:id" element={<EditArtwork />} />
-                </Route>
+                  <Route element={<ProtectedRoute allowedRoles={['ROLE_ADMIN']} />}>
+                    <Route path="/upload" element={<ArtworkUpload />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/admin/inventory" element={<Inventory />} />
+                    <Route path="/admin/offers" element={<OfferManagement />} />
+                    <Route path="/admin/orders" element={<OrderHistory />} />
+                    <Route path="/edit-art/:id" element={<EditArtwork />} />
+                  </Route>
 
-                <Route element={<ProtectedRoute allowedRoles={['ROLE_CUSTOMER']} />}>
-                  <Route path="/my-offers" element={<MyOffers />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/orders" element={<OrderHistory />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                </Route>
+                  <Route element={<ProtectedRoute allowedRoles={['ROLE_CUSTOMER']} />}>
+                    <Route path="/my-offers" element={<MyOffers />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/orders" element={<OrderHistory />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                  </Route>
 
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
-            </main>
-          </div>
-        </Router>
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+              </main>
+            </div>
+          </Router>
+        </WishlistProvider>
       </CartProvider>
-    </AuthProvider>
+    </AuthProvider >
   );
 }
 

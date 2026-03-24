@@ -1,12 +1,9 @@
 package com.artselling.backend.controller;
 
-import com.artselling.backend.entity.WishlistFolder;
-import com.artselling.backend.entity.WishlistItem;
-import com.artselling.backend.payload.request.FolderRequest;
+import com.artselling.backend.entity.Wishlist;
 import com.artselling.backend.payload.response.MessageResponse;
 import com.artselling.backend.security.services.UserDetailsImpl;
 import com.artselling.backend.service.WishlistService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -23,60 +20,50 @@ public class WishlistController {
     @Autowired
     private WishlistService wishlistService;
 
-    @GetMapping("/folders")
-    public ResponseEntity<?> getUserFolders() {
+    @GetMapping("/my-list")
+    public ResponseEntity<?> getMyWishlist() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) {
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
         }
         UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
-        return ResponseEntity.ok(wishlistService.getUserFolders(userDetails.getId()));
-    }
 
-    @PostMapping("/folders")
-    public ResponseEntity<?> createFolder(@Valid @RequestBody FolderRequest folderRequest) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
-        }
-        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
-        WishlistFolder folder = wishlistService.createFolder(userDetails.getId(), folderRequest.getName());
-        return ResponseEntity.ok(folder);
-    }
-
-    @DeleteMapping("/folders/{folderId}")
-    public ResponseEntity<?> deleteFolder(@PathVariable Long folderId) {
-        wishlistService.deleteFolder(folderId);
-        return ResponseEntity.ok(new MessageResponse("Folder deleted successfully!"));
-    }
-
-    @PostMapping("/folders/{folderId}/add/{artworkId}")
-    public ResponseEntity<?> addItem(@PathVariable Long folderId, @PathVariable Long artworkId) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
-        }
-        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
         try {
-            WishlistItem item = wishlistService.addItemToFolder(folderId, artworkId, userDetails.getUsername());
-            return ResponseEntity.ok(item);
-        } catch (RuntimeException e) {
+            List<Wishlist> wishlist = wishlistService.getUserWishlist(userDetails.getId());
+            return ResponseEntity.ok(wishlist);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
 
-    @DeleteMapping("/items/{itemId}")
-    public ResponseEntity<?> removeItem(@PathVariable Long itemId) {
-        wishlistService.removeItemFromFolder(itemId);
-        return ResponseEntity.ok(new MessageResponse("Item removed from wishlist!"));
+    @PostMapping("/add/{artworkId}")
+    public ResponseEntity<?> addToWishlist(@PathVariable Long artworkId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+
+        try {
+            Wishlist wishlist = wishlistService.addArtworkToWishlist(userDetails.getId(), artworkId);
+            return ResponseEntity.ok(wishlist);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
     }
 
-    @PutMapping("/items/{itemId}/move/{targetFolderId}")
-    public ResponseEntity<?> moveItem(@PathVariable Long itemId, @PathVariable Long targetFolderId) {
+    @DeleteMapping("/remove/{wishlistId}")
+    public ResponseEntity<?> removeFromWishlist(@PathVariable Long wishlistId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: User not authenticated!"));
+        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
+
         try {
-            WishlistItem item = wishlistService.moveItem(itemId, targetFolderId);
-            return ResponseEntity.ok(item);
-        } catch (RuntimeException e) {
+            wishlistService.removeFromWishlist(wishlistId, userDetails.getId());
+            return ResponseEntity.ok(new MessageResponse("Artwork removed from wishlist successfully!"));
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
     }
